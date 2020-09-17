@@ -1,2 +1,4 @@
-rootProject.name = 'kofanity'
+include 'sampleapp'
+include 'core'
 
+rootProject.name = 'kofanity'
