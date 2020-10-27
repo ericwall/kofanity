@@ -14,4 +14,8 @@ object Util {
             false
         }
     }
+
+    fun replaceAll(word: String, replacementChar: Char = '*'): String {
+        return word.replaceRange(0, word.length, replacementChar.toString().repeat(word.length))
+    }
 }
