@@ -1,8 +1,6 @@
 package com.kofanity.filter.model
 
 import com.kofanity.filter.util.Util
-import java.lang.Exception
-import java.lang.UnsupportedOperationException
 
 abstract class Filter(val rule: Rule = Rule()) {
     private val badwords: Map<String, String>
@@ -16,7 +14,7 @@ abstract class Filter(val rule: Rule = Rule()) {
                     badWord to Util.replaceAll(badWord, rule.replacementChar)
                 }.toMap()
             } catch (e: Exception) {
-                mapOf()
+                mapOf<String, String>()
             }
         }
     }
@@ -34,7 +32,7 @@ abstract class Filter(val rule: Rule = Rule()) {
             badwords.containsKey(it)
         } != null
 
-        if (throwException && containsBadWord) throw Exception("Bad Word Exception")
+        if (throwException && containsBadWord) throw Exception("Bad word exception")
         else return containsBadWord
     }
 
@@ -45,9 +43,9 @@ abstract class Filter(val rule: Rule = Rule()) {
     private fun filter(message: String, remove: Boolean): String {
         return message.split(" ").map { word ->
             if (badwords.containsKey(word)) {
-                if (remove) rule.removalString ?: ""
+                if (remove) rule.removalString
                 else badwords[word]
             } else word
-        }.joinToString(" ")
+        }.filterNotNull().joinToString(" ")
     }
 }
