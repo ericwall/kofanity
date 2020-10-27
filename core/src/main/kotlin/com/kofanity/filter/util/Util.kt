@@ -1,8 +1,6 @@
 package com.kofanity.filter.util
 
-
 import java.net.URL
-
 
 object Util {
 
