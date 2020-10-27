@@ -2,15 +2,8 @@ package com.kofanity.filter
 
 import com.kofanity.filter.model.Filter
 import com.kofanity.filter.model.PaperFilter
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.internal.synchronized
-import java.io.File
-import java.lang.Exception
-import java.lang.StringBuilder
-import java.util.*
-import kotlin.collections.ArrayList
 
-class Kofanity constructor() {
+class Kofanity {
     init {
         throw AssertionError()
     }
