@@ -1,22 +1,26 @@
 package com.kofanity.sampleapp
 
 import com.kofanity.filter.Kofanity
-import com.kofanity.filter.PaperFilter
+import com.kofanity.filter.model.Rule
+import com.kofanity.filter.model.PaperFilter
 
 class App {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
             println("Welcome to Kofanity")
+            val stringToFilter = "Testing this string asdfbadwordasdf"
 
-            Kofanity.install(PaperFilter())
-
-            val stringToFilter = "Testing this string"
-
+            // Default Filtering Behavior
             println("String to filter: $stringToFilter")
-            println("Needs filtering: ${Kofanity.needsFiltering(stringToFilter)}")
+            println("Needs filtering: ${Kofanity.needsFiltering(stringToFilter, false)}")
             println("Replace: ${Kofanity.replace(stringToFilter)}")
-            println("Remove: ${Kofanity.replace(stringToFilter)}")
+            println("Remove: ${Kofanity.remove(stringToFilter)}")
+
+            Kofanity.setFilter(PaperFilter(rule = Rule(replacementChar = 'x', removalString = "<REDACTED>")))
+
+            println("Replace with new filter: ${Kofanity.replace(stringToFilter)}")
+            println("Remove with new filter: ${Kofanity.remove(stringToFilter)}")
         }
     }
 }
