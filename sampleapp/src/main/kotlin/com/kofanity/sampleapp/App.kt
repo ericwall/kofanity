@@ -3,6 +3,7 @@ package com.kofanity.sampleapp
 import com.kofanity.filter.Kofanity
 import com.kofanity.filter.model.Rule
 import com.kofanity.filter.model.PaperFilter
+import java.lang.Exception
 
 class App {
     companion object {
@@ -18,9 +19,15 @@ class App {
             println("Remove: ${Kofanity.remove(stringToFilter)}")
 
             Kofanity.setFilter(PaperFilter(rule = Rule(replacementChar = 'x', removalString = "<REDACTED>")))
-
             println("Replace with new filter: ${Kofanity.replace(stringToFilter)}")
             println("Remove with new filter: ${Kofanity.remove(stringToFilter)}")
+
+            try {
+                println("Needs Filtering Throw exception when badword is found")
+                Kofanity.needsFiltering(stringToFilter, true)
+            } catch (e: Exception) {
+                println("Exception thrown: ${e.message}")
+            }
         }
     }
 }
